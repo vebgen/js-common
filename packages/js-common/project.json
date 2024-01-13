@@ -1,0 +1,40 @@
+{
+    "name": "js-common",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/js-common/src",
+    "projectType": "library",
+    "tags": ["various"],
+    "targets": {
+        "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": ["{options.outputFile}"]
+        },
+        "build": {
+            "executor": "@nx/rollup:rollup",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/js-common",
+                "tsConfig": "packages/js-common/tsconfig.lib.json",
+                "project": "packages/js-common/package.json",
+                "entryFile": "packages/js-common/src/index.ts",
+                "external": [],
+                "rollupConfig": "@nx/react/plugins/bundle-rollup",
+                "compiler": "babel",
+                "assets": [
+                    {
+                        "glob": "packages/js-common/README.md",
+                        "input": ".",
+                        "output": "."
+                    }
+                ]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "packages/js-common/jest.config.ts"
+            }
+        }
+    }
+}

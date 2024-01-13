@@ -15,7 +15,9 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-
+            "@vebgen/debug": ["packages/debug/src/index.ts"],
+            "@vebgen/js-common": ["packages/js-common/src/index.ts"],
+            "@vebgen/logger": ["packages/logger/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
