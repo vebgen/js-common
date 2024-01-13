@@ -2,6 +2,7 @@ export { storageAvailable } from './local-storage';
 export { byteToHex } from './math-funcs';
 export { rgbToHex } from './colors';
 export { isObject, mergeDeep } from './merge';
+export { formatString } from "./strings";
 
 /**
  * Makes all properties of an object writeable.

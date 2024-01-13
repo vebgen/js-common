@@ -1,6 +1,11 @@
 # debug
 
-This library was generated with [Nx](https://nx.dev).
+Some debug helpers.
+
+Following functions are available:
+
+- `compareAndStore`: caches the objects passed in; compares with previous
+  values and print s any differences it finds.
 
 ## Running unit tests
 
