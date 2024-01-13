@@ -2,6 +2,13 @@
 
 Common typescript code unrelated to any framework.
 
+The repository contains the following packages:
+
+- [@vebgen/debug](./packages/debug/README.md) with debug utilities;
+- [@vebgen/logger](./packages/logger/README.md) implementing a logger mechanism;
+- [@vebgen/js-common](./packages/js-common/README.md) that contains small
+  functions and utilities that found no other home.
+
 ## Managing the Workspace
 
 VS Code does does a good job managing Nx workspaces through the
