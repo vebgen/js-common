@@ -1,4 +1,4 @@
-export { Logger, logger } from './logger';
+export { Logger } from './logger';
 export { LogHandler, ConsoleHandler, ApiHandler } from './handlers';
 export type { Params } from './handlers';
 

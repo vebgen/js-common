@@ -17,7 +17,7 @@ export function isObject(item: any) {
  * @returns A new object with the merged content.
  */
 export function mergeDeep(first: Record<any, any>, second: Record<any, any>) {
-    let output = Object.assign({}, first);
+    const output = Object.assign({}, first);
     if (isObject(first) && isObject(second)) {
         Object.keys(second).forEach(key => {
             if (isObject(second[key])) {

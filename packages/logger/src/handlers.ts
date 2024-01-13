@@ -31,7 +31,7 @@ export class LogHandler {
  */
 export class ConsoleHandler extends LogHandler {
     handle(logger: Logger, level: number, code: string, params?: Params) {
-        let func: Function;
+        let func;
         let style: string;
         if (level >= CRITICAL) {
             func = console.error;

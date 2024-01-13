@@ -15,6 +15,9 @@ import { defaultNamedLevels, LogLevel } from "./levels";
  * an internal list of `handlers`.
  */
 export class Logger {
+    protected static _logger: Logger | undefined = undefined;
+    static get i() { return Logger._logger; }
+
     level: number;
     levels: Record<string | number, LogLevel>;
     handlers: LogHandler[];
@@ -24,7 +27,8 @@ export class Logger {
         level: number,
         handlers: LogHandler[],
         namedLevels?: LogLevel[],
-        context?: string
+        context?: string,
+        makeDefault = false
     ) {
         this.level = level;
         this.handlers = handlers;
@@ -41,7 +45,10 @@ export class Logger {
             this.levels[level.name] = level;
         }
 
-        _logger = this;
+        // Make this logger the default logger.
+        if (makeDefault) {
+            Logger._logger = this;
+        }
     }
 
     pushContext(name: string) {
@@ -123,6 +130,3 @@ export class Logger {
         }
     }
 }
-
-let _logger: Logger | undefined = undefined;
-export const logger = () => _logger;
