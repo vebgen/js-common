@@ -259,11 +259,29 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
 
-  packages/debug: {}
+  packages/debug:
+    dependencies:
+      core-js:
+        specifier: ^3.34.0
+        version: 3.34.0
+    publishDirectory: ../../dist/packages/debug
 
-  packages/js-common: {}
+  packages/js-common:
+    dependencies:
+      core-js:
+        specifier: ^3.34.0
+        version: 3.34.0
+    publishDirectory: ../../dist/packages/js-common
 
-  packages/logger: {}
+  packages/logger:
+    dependencies:
+      '@vebgen/js-common':
+        specifier: ^0.0.1
+        version: link:../../dist/packages/js-common
+      core-js:
+        specifier: ^3.34.0
+        version: 3.34.0
+    publishDirectory: ../../dist/packages/logger
 
 packages:
 

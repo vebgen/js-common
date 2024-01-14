@@ -1,4 +1,27 @@
 {
     "name": "@vebgen/logger",
-    "version": "0.0.1"
+    "description": "Logging for web apps",
+    "version": "0.0.1",
+    "private": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vebgen/js-common.git",
+        "directory": "packages/logger"
+    },
+    "bugs": {
+        "url": "https://github.com/vebgen/js-common/issues"
+    },
+    "homepage": "https://github.com/vebgen/js-common",
+    "license": "MIT",
+    "keywords": [
+        "logging", "debug"
+    ],
+    "publishConfig": {
+        "access": "public",
+        "directory": "../../dist/packages/logger"
+    },
+    "peerDependencies": {
+        "@vebgen/js-common": "^0.0.1",
+        "core-js": "^3.34.0"
+    }
 }
