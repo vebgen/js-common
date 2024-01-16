@@ -17,7 +17,8 @@
                 "tsConfig": "packages/logger/tsconfig.lib.json",
                 "project": "packages/logger/package.json",
                 "entryFile": "packages/logger/src/index.ts",
-                "external": [],
+                "external": "all",
+                "format": ["esm", "cjs"],
                 "rollupConfig": "@nx/react/plugins/bundle-rollup",
                 "compiler": "babel",
                 "assets": [

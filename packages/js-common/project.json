@@ -17,7 +17,8 @@
                 "tsConfig": "packages/js-common/tsconfig.lib.json",
                 "project": "packages/js-common/package.json",
                 "entryFile": "packages/js-common/src/index.ts",
-                "external": [],
+                "external": "all",
+                "format": ["esm", "cjs"],
                 "rollupConfig": "@nx/react/plugins/bundle-rollup",
                 "compiler": "babel",
                 "assets": [
