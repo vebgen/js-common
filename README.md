@@ -37,6 +37,7 @@ pnpm exec nx generate @nx/js:library \
     --directory=apps \
     --publishable=true \
     --importPath=@vebgen/g11n-cli \
+    --projectNameAndRootFormat=derived  \
     --includeBabelRc=true \
     --testEnvironment=node \
     --no-interactive --dry-run

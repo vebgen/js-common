@@ -2,7 +2,7 @@
 /**
  * Converts an object into a string.
  *
- * Functions are markes as `[Function]`.
+ * Functions are marked as `[Function]`.
  * Circular references are marked as `[Circular]`.
  */
 export const objToString = (obj: any): string => {
