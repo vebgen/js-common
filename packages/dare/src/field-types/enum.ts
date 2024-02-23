@@ -1,42 +1,31 @@
-import { nullStr } from "../constants";
 import { NullableField } from "../field";
 
-type Value = string | null | undefined;
-
-
 /**
- * A class representing a date field without time.
- *
- * The class expects values in the format `YYYY-MM-DD` (this includes the
- * minimum and maximum values).
+ * A field that can take one of a set of values.
  *
  * @template FieldId The type of the field identifier.
+ * @template Value The type of the field value.
  * @template Context A user-defined context provided to various methods of the
  *  field.
  */
-export class DateField<
+export abstract class EnumField<
     FieldId extends string | number | symbol = string,
+    Value = any,
     Context = any
 > extends NullableField<FieldId, Value, Context> {
-    /**
-     * The minimum acceptable value (inclusive) in the format `YYYY-MM-DD`.
-     */
-    public min: string | undefined;
 
     /**
-     * The maximum acceptable value (exclusive) in the format `YYYY-MM-DD`.
+     * The set of allowed values for the field.
      */
-    public max: string | undefined;
+    public values: Set<Value>;
 
     constructor(
         id: FieldId,
         nullable: boolean,
-        min?: string,
-        max?: string
+        values: Set<Value>,
     ) {
         super(id, nullable);
-        this.min = min;
-        this.max = max;
+        this.values = values;
     }
 
     /**
@@ -47,7 +36,7 @@ export class DateField<
      * of the class).
      */
     get type(): string {
-        return 'date';
+        return 'enum';
     }
 
     /**
@@ -65,26 +54,9 @@ export class DateField<
                 return this.type + '.null';
             }
         }
-        if (typeof value !== 'string') {
-            return this.type + '.string';
+        if (this.values.has(value)) {
+            return undefined;
         }
-        if (!value.match(/^\d{4}-\d{2}-\d{2}$/)) {
-            return this.type + '.format';
-        }
-        return undefined;
-    }
-
-    /**
-     * Creates a string representation of the value.
-     *
-     * @param value The value to convert.
-     * @param context A user-defined context provided to the method.
-     * @returns a string representation of the value.
-     */
-    override toString(value: Value, context: Context): string {
-        if (value === null || value === undefined) {
-            return nullStr;
-        }
-        return value;
+        return this.type + '.invalid';
     }
 }
