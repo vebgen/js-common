@@ -29,7 +29,7 @@ describe('FakePollo', () => {
         }).catch((result) => {
             expect(result).toBeTruthy();
             expect(result.name).toEqual('ApolloError');
-            expect(result.message).toBe("undefined");
+            expect(result.message).toBe("Error message not found.");
             expect(result.graphQLErrors.length).toBe(0);
             expect(result.networkError).toEqual({ hello: 'world' });
         });

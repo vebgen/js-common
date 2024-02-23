@@ -93,7 +93,10 @@ export abstract class Field<
      * @param context A user-defined context provided to the method.
      * @returns `undefined` if the value is valid, an error otherwise.
      */
-    validate(value: Value, context: Context): (string | undefined) {
+    validate(
+        value: Value, // eslint-disable-line @typescript-eslint/no-unused-vars
+        context: Context, // eslint-disable-line @typescript-eslint/no-unused-vars
+    ): (string | undefined) {
         return undefined;
     }
 
@@ -104,7 +107,10 @@ export abstract class Field<
      * @param context A user-defined context provided to the method.
      * @returns a string representation of the value.
      */
-    toString(value: Value, context: Context): string {
+    toString(
+        value: Value,
+        context: Context, // eslint-disable-line @typescript-eslint/no-unused-vars
+    ): string {
         if (value === null || value === undefined) {
             return nullStr;
         }
@@ -150,7 +156,10 @@ export abstract class NullableField<
      * @param context A user-defined context provided to the method.
      * @returns `undefined` if the value is valid, an error otherwise.
      */
-    override validate(value: Value, context: Context): (string | undefined) {
+    override validate(
+        value: Value,
+        context: Context, // eslint-disable-line @typescript-eslint/no-unused-vars
+    ): (string | undefined) {
         if (value === null || value === undefined) {
             if (this.nullable) {
                 return undefined;

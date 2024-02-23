@@ -10,7 +10,7 @@ import { Resource } from "../resource";
  * reimplement the `toString` method and the caller should also pass
  * the full record in the context.
  */
-export class RefOneField<
+export class RefManyField<
     ResourceId extends string | number | symbol = string,
     FieldId extends string | number | symbol = string,
     Value = any[] | null,

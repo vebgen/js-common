@@ -14,7 +14,7 @@ type Value = string | null | undefined;
  * @template Context A user-defined context provided to various methods of the
  *  field.
  */
-export class DateField<
+export class DateTimeField<
     FieldId extends string | number | symbol = string,
     Context = any
 > extends NullableField<FieldId, Value, Context> {
@@ -56,7 +56,10 @@ export class DateField<
      * @param context A user-defined context provided to the method.
      * @returns `undefined` if the value is valid, an error otherwise.
      */
-    override validate(value: Value, context: Context): (string | undefined) {
+    override validate(
+        value: Value,
+        context: Context // eslint-disable-line @typescript-eslint/no-unused-vars
+    ): (string | undefined) {
         if (value === null || value === undefined) {
             if (this.nullable) {
                 return undefined;
@@ -80,7 +83,10 @@ export class DateField<
      * @param context A user-defined context provided to the method.
      * @returns a string representation of the value.
      */
-    override toString(value: Value, context: Context): string {
+    override toString(
+        value: Value,
+        context: Context // eslint-disable-line @typescript-eslint/no-unused-vars
+    ): string {
         if (value === null || value === undefined) {
             return nullStr;
         }

@@ -33,7 +33,10 @@ export abstract class BooleanField<
      * @param context A user-defined context provided to the method.
      * @returns a string representation of the value.
      */
-    override toString(value: Value, context: Context): string {
+    override toString(
+        value: Value,
+        context: Context, // eslint-disable-line @typescript-eslint/no-unused-vars
+    ): string {
         if (value === null || value === undefined) {
             return nullStr;
         }
