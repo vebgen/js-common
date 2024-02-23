@@ -5,6 +5,10 @@ import { Field } from "../field";
  *
  * When presenting a set of records as a table, it is common to have a column
  * with controls to perform operations on the row.
+ *
+ * @template FieldId The type of the field identifier.
+ * @template Context A user-defined context provided to various methods of the
+ *  field.
  */
 export class ControlsField<
     FieldId extends string | number | symbol = string,

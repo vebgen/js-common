@@ -1,7 +1,8 @@
 # dare
 
 The datasets-and-resources library provides a set of classes and functions to
-help you describe your content.
+help you describe your content. It has no dependencies and is written in
+Typescript.
 
 In this context a `dataset` is a collection of `resources` (may be a database,
 a file, a web service, etc.); a `resource` is a single piece of content

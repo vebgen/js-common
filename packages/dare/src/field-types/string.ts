@@ -6,6 +6,10 @@ type Value = string | undefined | null;
 
 /**
  * A field representing a string (either single-line or multi-line).
+ *
+ * @template FieldId The type of the field identifier.
+ * @template Context A user-defined context provided to various methods of the
+ *  field.
  */
 export class StringField<
     FieldId extends string | number | symbol = string,

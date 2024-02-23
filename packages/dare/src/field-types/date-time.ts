@@ -1,33 +1,37 @@
+import { nullStr } from "../constants";
 import { NullableField } from "../field";
 
-type Value = number | null | undefined;
+type Value = string | null | undefined;
 
 
 /**
- * A field representing an integer number.
+ * A class representing a date and time.
+ *
+ * The class expects values in the ISO date format (this includes the minimum
+ * and maximum values).
  *
  * @template FieldId The type of the field identifier.
  * @template Context A user-defined context provided to various methods of the
  *  field.
  */
-export class IntegerField<
+export class DateField<
     FieldId extends string | number | symbol = string,
     Context = any
 > extends NullableField<FieldId, Value, Context> {
     /**
      * The minimum acceptable value (inclusive).
      */
-    public min: number | undefined;
+    public min: string | undefined;
 
     /**
      * The maximum acceptable value (exclusive).
      */
-    public max: number | undefined;
+    public max: string | undefined;
 
     constructor(
         id: FieldId, nullable: boolean,
-        min?: number,
-        max?: number
+        min?: string,
+        max?: string
     ) {
         super(id, nullable);
         this.min = min;
@@ -42,7 +46,7 @@ export class IntegerField<
      * of the class).
      */
     get type(): string {
-        return 'integer';
+        return 'dt';
     }
 
     /**
@@ -50,7 +54,7 @@ export class IntegerField<
      *
      * @param value The value to validate.
      * @param context A user-defined context provided to the method.
-     * @returns `true` if the value is valid, `false` otherwise.
+     * @returns `undefined` if the value is valid, an error otherwise.
      */
     override validate(value: Value, context: Context): (string | undefined) {
         if (value === null || value === undefined) {
@@ -60,13 +64,26 @@ export class IntegerField<
                 return this.type + '.null';
             }
         }
-
-        if (this.min !== undefined && value < this.min) {
-            return this.type + '.min';
+        if (typeof value !== 'string') {
+            return this.type + '.string';
         }
-        if (this.max !== undefined && value >= this.max) {
-            return this.type + '.max';
+        if (!value.match(/(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))/)) {
+            return this.type + '.format';
         }
         return undefined;
+    }
+
+    /**
+     * Creates a string representation of the value.
+     *
+     * @param value The value to convert.
+     * @param context A user-defined context provided to the method.
+     * @returns a string representation of the value.
+     */
+    override toString(value: Value, context: Context): string {
+        if (value === null || value === undefined) {
+            return nullStr;
+        }
+        return value;
     }
 }

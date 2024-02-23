@@ -6,6 +6,10 @@ type Value = boolean | undefined | null;
 
 /**
  * A field representing a boolean value.
+ *
+ * @template FieldId The type of the field identifier.
+ * @template Context A user-defined context provided to various methods of the
+ *  field.
  */
 export abstract class BooleanField<
     FieldId extends string | number | symbol = string,

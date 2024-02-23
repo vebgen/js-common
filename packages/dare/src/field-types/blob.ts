@@ -5,6 +5,11 @@ import { Field } from "../field";
  *
  * This field type is used to represent opaque data that is not intended to be
  * displayed in the user interface.
+ *
+ * @template FieldId The type of the field identifier.
+ * @template Value The type of the field value.
+ * @template Context A user-defined context provided to various methods of the
+ *  field.
  */
 export class BlobField<
     FieldId extends string | number | symbol = string,

@@ -115,6 +115,11 @@ export abstract class Field<
 
 /**
  * A field that stores nullable property.
+ *
+ * @template FieldId The type of the field identifier.
+ * @template Value The type of the field value.
+ * @template Context A user-defined context provided to various methods of the
+ *  field.
  */
 export abstract class NullableField<
     FieldId extends string | number | symbol = string,
