@@ -262,7 +262,8 @@ importers:
         specifier: ^5.0.4
         version: 5.0.4(typanion@3.14.0)
 
-  packages/dare: {}
+  packages/dare:
+    publishDirectory: ../../dist/packages/dare
 
   packages/debug:
     dependencies:
