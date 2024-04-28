@@ -12,13 +12,15 @@ import { defaultNamedLevels, LogLevel } from "./levels";
  * lower priority will get discarded.
  *
  * The log messages received by the logger are dispatched to
- * an internal list of `handlers`.
+ * an internal list of `handlers`. Also available to the handlers
+ * is the stack of `context` names which may be used to provide
+ * additional context to the log messages.
  */
 export class Logger {
     protected static _logger: Logger | undefined = undefined;
     static get i() { return Logger._logger; }
 
-    level: number;
+    protected level_: number;
     levels: Record<string | number, LogLevel>;
     handlers: LogHandler[];
     context: string[];
@@ -30,7 +32,7 @@ export class Logger {
         context?: string,
         makeDefault = false
     ) {
-        this.level = level;
+        this.level_ = level;
         this.handlers = handlers;
         this.context = context ? [context] : [];
 
@@ -49,6 +51,25 @@ export class Logger {
         if (makeDefault) {
             Logger._logger = this;
         }
+
+        // Bind methods.
+        this.critical = this.critical.bind(this);
+        this.security = this.security.bind(this);
+        this.error = this.error.bind(this);
+        this.warn = this.warn.bind(this);
+        this.info = this.info.bind(this);
+        this.debug = this.debug.bind(this);
+        this.trace = this.trace.bind(this);
+        this.log = this.log.bind(this);
+
+    }
+
+    get level() {
+        return this.level_;
+    }
+
+    set level(level: number) {
+        this.level_ = level;
     }
 
     pushContext(name: string) {
@@ -67,34 +88,93 @@ export class Logger {
         );
     }
 
+    /**
+     * Log a message at the highest level of severity.
+     *
+     * @param code The message code.
+     * @param params The message parameters.
+     * @param extra Additional contextual information.
+     */
     critical(code: string, params?: Params, context?: string | string[]) {
         this.log(this.levels.CRITICAL, code, params, context);
     }
 
+    /**
+     * Log an authorization or authentication message.
+     *
+     * @param code The message code.
+     * @param params The message parameters.
+     * @param extra Additional contextual information.
+     */
     security(code: string, params?: Params, context?: string | string[]) {
         this.log(this.levels.SECURITY, code, params, context);
     }
 
+    /**
+     * Log an error message.
+     *
+     * @param code The message code.
+     * @param params The message parameters.
+     * @param extra Additional contextual information.
+     */
     error(code: string, params?: Params, context?: string | string[]) {
         this.log(this.levels.ERROR, code, params, context);
     }
 
+    /**
+     * Log a warning message.
+     *
+     * @param code The message code.
+     * @param params The message parameters.
+     * @param extra Additional contextual information.
+     */
     warn(code: string, params?: Params, context?: string | string[]) {
         this.log(this.levels.WARNING, code, params, context);
     }
 
+    /**
+     * Log an informative message.
+     *
+     * @param code The message code.
+     * @param params The message parameters.
+     * @param extra Additional contextual information.
+     */
     info(code: string, params?: Params, context?: string | string[]) {
         this.log(this.levels.INFO, code, params, context);
     }
 
+    /**
+     * Log a debug message.
+     *
+     * @param code The message code.
+     * @param params The message parameters.
+     * @param extra Additional contextual information.
+     */
     debug(code: string, params?: Params, context?: string | string[]) {
         this.log(this.levels.DEBUG, code, params, context);
     }
 
+    /**
+     * Log a message expected to generate a lot of output.
+     *
+     * @param code The message code.
+     * @param params The message parameters.
+     * @param extra Additional contextual information.
+     */
     trace(code: string, params?: Params, context?: string | string[]) {
         this.log(this.levels.TRACE, code, params, context);
     }
 
+    /**
+     * Log a message at the given level.
+     *
+     * The other log methods are just wrappers around this one.
+     *
+     * @param level The level of the message.
+     * @param code The message code.
+     * @param params The message parameters.
+     * @param context Additional contextual information.
+     */
     log(
         level: number | LogLevel,
         code: string,
@@ -105,7 +185,7 @@ export class Logger {
         if (level instanceof LogLevel) {
             level = level.level;
         }
-        if (level < this.level) {
+        if (level < this.level_) {
             return;
         }
 

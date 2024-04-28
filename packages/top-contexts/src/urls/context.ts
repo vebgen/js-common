@@ -119,10 +119,10 @@ export const AppUrlsProvider = AppUrlsContext.Provider;
 /**
  * The hook to use the AppUrls context.
  */
-export function useAppUrlsContext(): AppUrlsContextData {
+export function useAppUrls(): AppUrlsContextData {
     const result = useContext(AppUrlsContext);
     if (result === undefined) {
-        throw new Error('useAppUrlsContext must be used within a AppUrlsProvider');
+        throw new Error('useAppUrls must be used within a AppUrlsProvider');
     }
     return result as AppUrlsContextData;
 };

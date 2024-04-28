@@ -5,6 +5,17 @@ export type {
 export {
     AppUrlsContext,
     AppUrlsProvider,
-    useAppUrlsContext,
+    useAppUrls,
     AppUrlsController
 } from './urls';
+
+export type {
+    LoggerContextData,
+    LoggerControllerProps,
+} from './logger';
+export {
+    LoggerContext,
+    LoggerProvider,
+    useLogger,
+    LoggerController
+} from './logger';

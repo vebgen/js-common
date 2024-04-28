@@ -2,7 +2,7 @@ export type { AppUrlsContextData } from './context';
 export {
     AppUrlsContext,
     AppUrlsProvider,
-    useAppUrlsContext
+    useAppUrls
 } from './context';
 
 export type { AppUrlsControllerProps } from './controller';

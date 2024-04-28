@@ -1,6 +1,6 @@
 # top-contexts
 
-General-purpose context definitions for the top-level application.
+General-purpose React context definitions for the top-level application.
 
 ## Application URLs
 
