@@ -20,7 +20,7 @@ export function compareAndStore(
         Object.keys(crt).forEach((itr: string) => {
             const crtVal: any = storeCompare[itr];
             const newValue: any = crt[itr];
-            if (crtVal != newValue) {
+            if (crtVal !== newValue) {
                 console.log(
                     "=== [%s] has changed from %O to %O",
                     itr, crtVal, newValue

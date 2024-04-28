@@ -1,11 +1,14 @@
 # logger
 
-Logging utilities.
+Un-opinionated logging utilities.
+
+Take a look at the `@vebgen/top-contexts` package for a React context that uses
+these utilities.
 
 ## Usage
 
-First create a logger and provide it with a minimum log level
-(messages below this level will not be logged) and a list of handlers:
+First create a logger and provide it with a minimum log level (messages below
+this level will not be logged) and a list of handlers:
 
 ```js
 const loggerLevel = 1;
