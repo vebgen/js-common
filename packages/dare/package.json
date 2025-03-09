@@ -1,7 +1,7 @@
 {
   "name": "@vebgen/dare",
   "description": "The datasets-and-resources library provides a set of classes and functions to help you describe your content.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": false,
   "dependencies": {},
   "repository": {
