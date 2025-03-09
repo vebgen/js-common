@@ -1,26 +1,27 @@
 {
-    "name": "@vebgen/js-common",
-    "description": "Various small functions",
-    "version": "0.0.3",
-    "private": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/vebgen/js-common.git",
-        "directory": "packages/js-common"
-    },
-    "bugs": {
-        "url": "https://github.com/vebgen/js-common/issues"
-    },
-    "homepage": "https://github.com/vebgen/js-common",
-    "license": "MIT",
-    "keywords": [
-        "logging", "debug"
-    ],
-    "publishConfig": {
-        "access": "public",
-        "directory": "../../dist/packages/js-common"
-    },
-    "peerDependencies": {
-        "core-js": "^3.37.0"
-    }
+  "name": "@vebgen/js-common",
+  "description": "Various small functions",
+  "version": "0.0.4",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vebgen/js-common.git",
+    "directory": "packages/js-common"
+  },
+  "bugs": {
+    "url": "https://github.com/vebgen/js-common/issues"
+  },
+  "homepage": "https://github.com/vebgen/js-common",
+  "license": "MIT",
+  "keywords": [
+    "logging",
+    "debug"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/js-common"
+  },
+  "peerDependencies": {
+    "core-js": "^3.37.0"
+  }
 }

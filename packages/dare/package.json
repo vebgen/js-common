@@ -1,24 +1,24 @@
 {
-    "name": "@vebgen/dare",
-    "description": "The datasets-and-resources library provides a set of classes and functions to help you describe your content.",
-    "version": "0.0.3",
-    "private": false,
-    "dependencies": {},
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/vebgen/js-common.git",
-        "directory": "packages/dare"
-    },
-    "bugs": {
-        "url": "https://github.com/vebgen/js-common/issues"
-    },
-    "homepage": "https://github.com/vebgen/js-common",
-    "license": "MIT",
-    "keywords": [
-        "datasets"
-    ],
-    "publishConfig": {
-        "access": "public",
-        "directory": "../../dist/packages/dare"
-    }
+  "name": "@vebgen/dare",
+  "description": "The datasets-and-resources library provides a set of classes and functions to help you describe your content.",
+  "version": "0.0.4",
+  "private": false,
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vebgen/js-common.git",
+    "directory": "packages/dare"
+  },
+  "bugs": {
+    "url": "https://github.com/vebgen/js-common/issues"
+  },
+  "homepage": "https://github.com/vebgen/js-common",
+  "license": "MIT",
+  "keywords": [
+    "datasets"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/dare"
+  }
 }
