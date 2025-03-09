@@ -4,7 +4,9 @@
     "description": "Common typescript code unrelated to any framework.",
     "license": "MIT",
     "private": true,
-    "scripts": {},
+    "scripts": {
+        "pp": "node ./tools/scripts/pre-publish.mjs"
+    },
     "dependencies": {
         "@apollo/client": "^3.10.1",
         "@reduxjs/toolkit": "^2.2.3",
