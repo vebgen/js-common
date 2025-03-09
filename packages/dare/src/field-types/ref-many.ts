@@ -1,5 +1,7 @@
-import { Field, NullableField } from "../field";
-import { Resource } from "../resource";
+import { Field, NullableField } from '../field';
+import { Resource } from '../resource';
+import { ContextBase } from '../defs';
+
 
 /**
  * A field representing a reference to another resource.
@@ -14,23 +16,23 @@ export class RefManyField<
     ResourceId extends string | number | symbol = string,
     FieldId extends string | number | symbol = string,
     Value = any[] | null,
-    Context = any
+    Context extends ContextBase = any,
 > extends NullableField<FieldId, Value, Context> {
     /**
      * The resource that is being referenced.
      */
-    public resource: Resource<ResourceId, FieldId, Context>;
+    public resource: string | Resource<ResourceId, FieldId, Context>;
 
     /**
      * The referenced field in the other resource.
      */
-    public field: Field<FieldId, Value, Context>;
+    public field: string | Field<FieldId, Value, Context>;
 
     constructor(
         id: FieldId,
         nullable: boolean,
-        otherRes: Resource<ResourceId, FieldId, Context>,
-        otherField: Field<FieldId, Value, Context>,
+        otherRes: string | Resource<ResourceId, FieldId, Context>,
+        otherField: string | Field<FieldId, Value, Context>,
     ) {
         super(id, nullable);
         this.resource = otherRes;
@@ -56,13 +58,26 @@ export class RefManyField<
     }
 
     /**
+     * Makes sure that the resource and field are resolved.
+     */
+    resolve(context: Context) {
+        if (typeof this.resource === 'string') {
+            this.resource = context.name2res(this.resource) as any;
+        }
+
+        if (typeof this.field === 'string') {
+            this.field = (this.resource as Resource).fields[this.field] as any;
+        }
+    }
+
+    /**
      * Checks if a value is valid for the field.
      *
      * @param value The value to validate.
      * @param context A user-defined context provided to the method.
      * @returns `undefined` if the value is valid, an error otherwise.
      */
-    override validate(value: Value, context: Context): (string | undefined) {
+    override validate(value: Value, context: Context): string | undefined {
         if (value === null || value === undefined) {
             if (this.nullable) {
                 return undefined;
@@ -73,13 +88,17 @@ export class RefManyField<
         if (!Array.isArray(value)) {
             return this.type + '.array';
         }
+        if (!(this.field instanceof Field)) {
+            this.resolve(context);
+        }
+
         for (const item of value) {
-            const error = this.field.validate(item, context);
+            const error = (this.field as Field).validate(item, context);
+
             if (error) {
                 return error;
             }
         }
         return undefined;
     }
-
 }

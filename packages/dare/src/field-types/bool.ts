@@ -11,7 +11,7 @@ type Value = boolean | undefined | null;
  * @template Context A user-defined context provided to various methods of the
  *  field.
  */
-export abstract class BooleanField<
+export class BooleanField<
     FieldId extends string | number | symbol = string,
     Context = any
 > extends NullableField<FieldId, Value, Context> {

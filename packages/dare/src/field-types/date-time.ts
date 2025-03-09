@@ -1,8 +1,7 @@
-import { nullStr } from "../constants";
-import { NullableField } from "../field";
+import { nullStr } from '../constants';
+import { NullableField } from '../field';
 
 type Value = string | null | undefined;
-
 
 /**
  * A class representing a date and time.
@@ -16,7 +15,7 @@ type Value = string | null | undefined;
  */
 export class DateTimeField<
     FieldId extends string | number | symbol = string,
-    Context = any
+    Context = any,
 > extends NullableField<FieldId, Value, Context> {
     /**
      * The minimum acceptable value (inclusive).
@@ -28,11 +27,7 @@ export class DateTimeField<
      */
     public max: string | undefined;
 
-    constructor(
-        id: FieldId, nullable: boolean,
-        min?: string,
-        max?: string
-    ) {
+    constructor(id: FieldId, nullable: boolean, min?: string, max?: string) {
         super(id, nullable);
         this.min = min;
         this.max = max;
@@ -58,8 +53,8 @@ export class DateTimeField<
      */
     override validate(
         value: Value,
-        context: Context // eslint-disable-line @typescript-eslint/no-unused-vars
-    ): (string | undefined) {
+        context: Context, // eslint-disable-line @typescript-eslint/no-unused-vars
+    ): string | undefined {
         if (value === null || value === undefined) {
             if (this.nullable) {
                 return undefined;
@@ -70,7 +65,11 @@ export class DateTimeField<
         if (typeof value !== 'string') {
             return this.type + '.string';
         }
-        if (!value.match(/(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))/)) {
+        if (
+            !value.match(
+                /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))/,
+            )
+        ) {
             return this.type + '.format';
         }
         return undefined;
@@ -85,7 +84,7 @@ export class DateTimeField<
      */
     override toString(
         value: Value,
-        context: Context // eslint-disable-line @typescript-eslint/no-unused-vars
+        context: Context, // eslint-disable-line @typescript-eslint/no-unused-vars
     ): string {
         if (value === null || value === undefined) {
             return nullStr;

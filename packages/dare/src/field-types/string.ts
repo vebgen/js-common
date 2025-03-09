@@ -1,8 +1,6 @@
-import { NullableField } from "../field";
-
+import { NullableField } from '../field';
 
 type Value = string | undefined | null;
-
 
 /**
  * A field representing a string (either single-line or multi-line).
@@ -13,19 +11,34 @@ type Value = string | undefined | null;
  */
 export class StringField<
     FieldId extends string | number | symbol = string,
-    Context = any
+    Context = any,
 > extends NullableField<FieldId, Value, Context> {
     /**
      * Wether this is a multi-line string or not.
      */
     public multiline: boolean;
 
+    /**
+     * The maximum length of the string.
+     */
+    public maxLength?: number;
+
+    /**
+     * The minimum length of the string.
+     */
+    public minLength?: number;
+
     constructor(
-        id: FieldId, nullable: boolean,
-        multiline: boolean = true
+        id: FieldId,
+        nullable: boolean,
+        multiline: boolean = true,
+        maxLength?: number,
+        minLength?: number,
     ) {
         super(id, nullable);
         this.multiline = !!multiline;
+        this.maxLength = maxLength;
+        this.minLength = minLength;
     }
 
     /**
@@ -40,7 +53,6 @@ export class StringField<
     }
 }
 
-
 /**
  * A field representing a multiline string with a format hint.
  *
@@ -50,19 +62,34 @@ export class StringField<
  */
 export class FormattedField<
     FieldId extends string | number | symbol = string,
-    Context = any
+    Context = any,
 > extends NullableField<FieldId, Value, Context> {
     /**
      * The format hint for the string (`json`, `html`, `xml`, etc.)
      */
     public format: string;
 
+    /**
+     * The maximum length of the string.
+     */
+    public maxLength?: number;
+
+    /**
+     * The minimum length of the string.
+     */
+    public minLength?: number;
+
     constructor(
-        id: FieldId, nullable: boolean,
-        format: string
+        id: FieldId,
+        nullable: boolean,
+        format: string,
+        maxLength?: number,
+        minLength?: number,
     ) {
         super(id, nullable);
         this.format = format;
+        this.maxLength = maxLength;
+        this.minLength = minLength;
     }
 
     /**

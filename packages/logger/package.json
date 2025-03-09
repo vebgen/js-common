@@ -22,6 +22,6 @@
     },
     "peerDependencies": {
         "@vebgen/js-common": "^0.0.1",
-        "core-js": "^3.34.0"
+        "core-js": "^3.37.0"
     }
 }
